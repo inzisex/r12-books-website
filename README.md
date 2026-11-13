@@ -1,4 +1,4 @@
-# X12 Books
+# R12 Books
 
 Responsive website for an independent bookstore (Web Designing case study).
 

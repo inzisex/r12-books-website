@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catalogue &amp; Reserve | R12 Books</title>
+  <meta name="description"
+    content="Browse the R12 Books catalogue with prices, then reserve books online for in-store pickup. Your reservation list is saved on your device.">
+  <meta name="keywords" content="book catalogue, reserve books, book prices, bookstore pickup">
+  <meta name="author" content="R12 Books">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;600&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header>
+    <nav class="navbar navbar-expand-md site-nav" aria-label="Main navigation">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">R12 </a>
+        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+          aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="catalogue.html">Catalogue &amp;
+                Reserve</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#reservations">My list <span class="badge badge-count rounded-pill"
+                  id="navCount">0</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="container py-4">
+    <h1 class="mb-3">Catalogue &amp; Reserve</h1>
+    <p class="lead">Pick books, add them to your list, and send a pickup request. Pay in store.</p>
+
+    <!-- TABLE -->
+    <section aria-labelledby="tableHeading" class="mb-5">
+      <h2 id="tableHeading" class="h3">Available books</h2>
+      <p class="table-responsive-note small text-muted">Swipe sideways to see all columns.</p>
+      <div class="table-responsive">
+        <table class="table table-striped align-middle" id="bookTable">
+          <caption class="visually-hidden">List of books with category, price and an add button</caption>
+          <thead>
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Category</th>
+              <th scope="col">Price (Rs.)</th>
+              <th scope="col">Add</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-id="b1" data-title="The Quiet Orchard" data-price="350">
+              <th scope="row">The Quiet Orchard</th>
+              <td>Fiction</td>
+              <td>350</td>
+              <td><button type="button" class="btn btn-sm btn-shop add-btn">Add to list</button></td>
+            </tr>
+            <tr data-id="b2" data-title="Maps of Old Delhi" data-price="499">
+              <th scope="row">Maps of Old Delhi</th>
+              <td>Non-fiction</td>
+              <td>499</td>
+              <td><button type="button" class="btn btn-sm btn-shop add-btn">Add to list</button></td>
+            </tr>
+            <tr data-id="b3" data-title="Code in Plain Words" data-price="425">
+              <th scope="row">Code in Plain Words</th>
+              <td>Technology</td>
+              <td>425</td>
+              <td><button type="button" class="btn btn-sm btn-shop add-btn">Add to list</button></td>
+            </tr>
+            <tr data-id="b4" data-title="River Songs" data-price="275">
+              <th scope="row">River Songs</th>
+              <td>Poetry</td>
+              <td>275</td>
+              <td><button type="button" class="btn btn-sm btn-shop add-btn">Add to list</button></td>
+            </tr>
+            <tr data-id="b5" data-title="The Little Lantern" data-price="199">
+              <th scope="row">The Little Lantern</th>
+              <td>Children</td>
+              <td>199</td>
+              <td><button type="button" class="btn btn-sm btn-shop add-btn">Add to list</button></td>
+            </tr>
+            <tr data-id="b6" data-title="Spice Route Kitchen" data-price="650">
+              <th scope="row">Spice Route Kitchen</th>
+              <td>Cookery</td>
+              <td>650</td>
+              <td><button type="button" class="btn btn-sm btn-shop add-btn">Add to list</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- RESERVATION LIST (JS feature) -->
+    <section id="reservations" class="reserve-panel p-3 p-md-4 mb-5 rounded" aria-labelledby="listHeading">
+      <h2 id="listHeading" class="h3">My reservation list</h2>
+      <p id="emptyMsg" class="text-muted">Your list is empty. Add a book from the table above.</p>
+      <ul class="list-group mb-3" id="reserveList"></ul>
+      <p class="fw-bold mb-3">Estimated total: Rs. <span id="totalPrice">0</span></p>
+      <button type="button" class="btn btn-outline-danger btn-sm" id="clearBtn">Clear list</button>
+    </section>
+
+    <!-- FORM with 5+ input types -->
+    <section aria-labelledby="formHeading" class="mb-5">
+      <h2 id="formHeading" class="h3">Pickup request</h2>
+      <form id="pickupForm" class="row g-3" novalidate>
+        <div class="col-md-6">
+          <label for="fullName" class="form-label">Full name</label>
+          <input type="text" class="form-control" id="fullName" name="fullName" autocomplete="name" required
+            minlength="3">
+          <div class="invalid-feedback">Please enter your name (at least 3 letters).</div>
+        </div>
+        <div class="col-md-6">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" name="email" autocomplete="email" required>
+          <div class="invalid-feedback">Please enter a valid email address.</div>
+        </div>
+        <div class="col-md-6">
+          <label for="phone" class="form-label">Mobile number</label>
+          <input type="tel" class="form-control" id="phone" name="phone" autocomplete="tel" pattern="[6-9][0-9]{9}"
+            inputmode="numeric" required>
+          <div class="invalid-feedback">Enter a 10-digit Indian mobile number.</div>
+        </div>
+        <div class="col-md-6">
+          <label for="pickupDate" class="form-label">Pickup date</label>
+          <input type="date" class="form-control" id="pickupDate" name="pickupDate" required>
+          <div class="invalid-feedback">Choose a pickup date from today onwards.</div>
+        </div>
+        <div class="col-md-4">
+          <label for="slot" class="form-label">Time slot</label>
+          <select class="form-select" id="slot" name="slot" required>
+            <option value="">Choose...</option>
+            <option>10 am - 1 pm</option>
+            <option>1 pm - 4 pm</option>
+            <option>4 pm - 8 pm</option>
+          </select>
+          <div class="invalid-feedback">Please pick a time slot.</div>
+        </div>
+        <div class="col-md-4">
+          <label for="copies" class="form-label">Copies per title (1-5)</label>
+          <input type="number" class="form-control" id="copies" name="copies" min="1" max="5" value="1" required>
+          <div class="invalid-feedback">Enter a number from 1 to 5.</div>
+        </div>
+        <div class="col-md-4">
+          <label for="budget" class="form-label">Comfortable budget: Rs. <output id="budgetOut">1000</output></label>
+          <input type="range" class="form-range" id="budget" name="budget" min="200" max="3000" step="100" value="1000">
+        </div>
+        <fieldset class="col-12">
+          <legend class="form-label fs-6">Gift wrapping?</legend>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gift" id="giftNo" value="no" checked>
+            <label class="form-check-label" for="giftNo">No</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gift" id="giftYes" value="yes">
+            <label class="form-check-label" for="giftYes">Yes (+ Rs. 30 per book)</label>
+          </div>
+        </fieldset>
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="consent" required>
+            <label class="form-check-label" for="consent">I agree that R12  may use these details only to prepare
+              my pickup.</label>
+            <div class="invalid-feedback">Please tick to continue.</div>
+          </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-shop btn-lg">Send pickup request</button>
+        </div>
+      </form>
+      <div id="formStatus" class="alert alert-success mt-3 d-none" role="status"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer py-4">
+    <div class="container d-flex flex-column flex-md-row justify-content-between">
+      <p class="mb-1">&copy; 2026 R12 . Student project, all names fictional.</p>
+      <p class="mb-0"><a href="index.html">Home</a> &middot; <a href="#reservations">My list</a></p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+
+</html>

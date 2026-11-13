@@ -1,0 +1,126 @@
+/* X12 Books - custom layer on top of Bootstrap 5
+   Palette: espresso #3B2A20 | paper #FAF6EF | terracotta #A63D2A | teal #2F5D62 | sand #E9DFCF
+   Fonts: Playfair Display (headings) + Source Sans 3 (body) */
+
+:root {
+  --espresso: #3b2a20;
+  --paper: #faf6ef;
+  --terracotta: #a63d2a;
+  --teal: #2f5d62;
+  --sand: #e9dfcf;
+  --bs-body-font-family: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --bs-body-color: #2b2118;
+  --bs-body-bg: var(--paper);
+  --bs-body-font-size: 1.05rem; /* larger base text for readability */
+}
+
+h1, h2, h3, h4, .navbar-brand, .display-5 {
+  font-family: "Playfair Display", Georgia, serif;
+  color: var(--espresso);
+}
+
+/* Skip link for keyboard users */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--espresso);
+  color: #fff;
+  padding: .5rem 1rem;
+  z-index: 2000;
+}
+.skip-link:focus { left: 0; }
+
+/* Navbar */
+.site-nav { background: var(--espresso); }
+.site-nav .navbar-brand,
+.site-nav .nav-link { color: #fff; }
+.site-nav .nav-link:hover,
+.site-nav .nav-link.active { color: #f2c9a0; }
+.badge-count { background: var(--terracotta); }
+
+/* Buttons */
+.btn-shop {
+  background: var(--terracotta);
+  border-color: var(--terracotta);
+  color: #fff;
+}
+.btn-shop:hover, .btn-shop:focus {
+  background: #8a2f1f;
+  border-color: #8a2f1f;
+  color: #fff;
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, var(--sand), var(--paper));
+  border-bottom: 4px solid var(--terracotta);
+}
+.hero-art { max-width: 340px; width: 100%; height: auto; }
+
+/* Book cards - TRANSITION (1 of 1 required) */
+.book-card {
+  border: 1px solid var(--sand);
+  background: #fff;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.book-card:hover,
+.book-card:focus-within {
+  transform: translateY(-6px);
+  box-shadow: 0 .75rem 1.5rem rgba(59, 42, 32, .18);
+}
+.cover {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.15rem;
+  text-align: center;
+  padding: 1rem;
+}
+.cover-1 { background: var(--teal); }
+.cover-2 { background: var(--terracotta); }
+.cover-3 { background: var(--espresso); }
+
+/* Speed section */
+.stat {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2.2rem;
+  color: var(--terracotta);
+}
+
+/* Tables */
+.table thead th { background: var(--espresso); color: #fff; }
+
+/* Reservation panel */
+.reserve-panel { background: #fff; border: 1px solid var(--sand); }
+
+footer.site-footer {
+  background: var(--espresso);
+  color: #f1e8da;
+}
+footer.site-footer a { color: #f2c9a0; }
+
+/* ---------- MEDIA QUERY 1: phones ---------- */
+@media (max-width: 575.98px) {
+  :root { --bs-body-font-size: 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .cover { height: 110px; }
+  .table-responsive-note { display: block; }
+  .stat { font-size: 1.7rem; }
+}
+
+/* ---------- MEDIA QUERY 2: large desktops ---------- */
+@media (min-width: 992px) {
+  .hero { padding-top: 4rem; padding-bottom: 4rem; }
+  .hero h1 { font-size: 3rem; }
+  .table-responsive-note { display: none; }
+}
+
+/* Respect reduced-motion preference (accessibility) */
+@media (prefers-reduced-motion: reduce) {
+  .book-card { transition: none; }
+  .book-card:hover { transform: none; }
+}
